@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container">
+   
+ 
+   <div class="row row-content">
+           <div class="col-sm-6 col-sm-offset-3">
+              <h3>Add Contact</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <form class="form-horizontal" role="form" action="{% url 'AddressBookClient:contact' %}" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <label for="firstname" class="col-sm-2 control-label">First Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control req" id="first_name" name="first_name" placeholder="Enter First Name" required>
+                            {{ form.errors.first_name }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-2 control-label">Last Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control req" id="last_name" name="last_name" placeholder="Enter Last Name" required>
+                            {{ form.errors.last_name }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telnum" class="col-sm-2 control-label">Phone Number.</label>
+                        
+                        <div class="col-sm-10">
+                            <input type="tel" class="form-control req" id="phone_number" name="phone_number" placeholder="Tel. number" required>
+                            {{ form.errors.phone_number }}
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="emailid" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control req" id="email_address" name="email_address" placeholder="Email" required>
+                            {{ form.errors.email_address }}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback" class="col-sm-2 control-label">Address</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="address" name="address" rows="12"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary" id="submit" >ADD Contact</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+             <div class="col-xs-12 col-sm-3">
+                <p style="padding:20px;"></p>
+            </div>
+            {{ form.errors.last_name }}
+       </div>
+    </div>
+</div>
+
+<script>
+$(function (){
+$('.req').change(function(){
+    if ($('#first_name').val() == '' || $('#last_name').val() == '' || $('#phone_number').val() == '' || $('#email_address').val() == '')
+        {
+            $('#submit').attr('disabled',true);
+        }
+    else
+        {
+            $('#submit').attr('disabled',false);
+        }
+});
+});
+</script>
+
+{% endblock %} 

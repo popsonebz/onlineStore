@@ -1,0 +1,41 @@
+version: '2'
+services:
+   db:
+     image: postgres
+     volumes:
+       - ./postgres-data:/var/lib/postgresql/data
+     expose:
+       - "2222"
+     networks:                                                                                                                                                                                                                                                                  
+       custom_network:                                                                                                                                                                                                                                                                  
+         ipv4_address: 172.18.0.2
+     mem_limit: 1g  
+   web:
+     build: .
+     command: python manage.py runserver 0.0.0.0:8099
+     volumes:
+       - .:/code
+     ports:
+       - "8099:8099"
+     depends_on:
+       - db
+     networks:
+       custom_network:
+         ipv4_address: 172.18.0.4
+     mem_limit: 1g
+   jenkins:
+     image: jenkins
+     volumes:
+       - ./jenkins:/var/jenkins_home
+     ports:
+       - "49001:8080"
+     depends_on:
+       - web
+     networks:                                                                                                                                                                                                                                                                  
+       custom_network:                                                                                                                                                                                                                                                                  
+         ipv4_address: 172.18.0.6
+     mem_limit: 1g
+networks:
+  custom_network:
+    external:
+      name: mynet                                                                                                                                                                                                                                                                       
