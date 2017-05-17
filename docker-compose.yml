@@ -12,7 +12,7 @@ services:
      mem_limit: 1g  
    web:
      build: .
-     command: python manage.py runserver 0.0.0.0:8099
+     command: bash -c "python manage.py migratemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8099"
      volumes:
        - .:/code
      ports:
