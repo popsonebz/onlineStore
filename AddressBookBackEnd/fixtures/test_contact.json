@@ -1,0 +1,24 @@
+[
+  {
+    "model": "AddressBookClient.AddressBookTable",
+    "pk": 1,
+    "fields": {
+      "first_name": "John",
+      "last_name": "Lennon",
+      "phone_number": "08066677750",
+      "email_address": "john.lennon@gmail.com",
+      "address": "No 123, captown"
+    }
+  },
+  {
+    "model": "AddressBookClient.AddressBookTable",
+    "pk": 2,
+    "fields": {
+      "first_name": "Joash",
+      "last_name": "Modeley",
+      "phone_number": "08066688890",
+      "email_address": "joah.moodley@gmail.com",
+      "address": "No 123, durban"
+    }
+  }
+]

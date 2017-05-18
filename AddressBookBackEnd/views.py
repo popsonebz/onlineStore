@@ -8,7 +8,11 @@ from AddressBookClient.models import AddressBookTable
 from AddressBookClient.form import AddressBookForm
 
 from django.http import Http404
+
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
+#@login_required(login_url="/login")
 def address_list(request):
     addresses = AddressBookTable.objects.all().order_by('first_name')
     return render(request, 'addressBookBackEnd/index.html', {'addresses': addresses})

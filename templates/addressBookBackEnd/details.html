@@ -1,14 +1,11 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-
+{% block title %} Contact Details {% endblock %}
 {% block content %}
 <div class="container">
    
- 
+ <h3>Details</h3>
    <div class="row row-content">
-           <div class="col-sm-6 col-sm-offset-3">
-              <h3>Details</h3>
-            </div>
             <div class="col-xs-12 col-sm-9">
                     <div class="form-group">
                         <label for="firstname" class="col-sm-2 control-label">First Name</label>
@@ -47,7 +44,7 @@
             </div>
             
        </div>
-    </div>
+    
 </div>
 
 {% endblock %} 

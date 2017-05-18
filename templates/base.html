@@ -3,12 +3,15 @@
   <head>
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}"
           rel="stylesheet" media="screen">
+  <title>{% block title %} Address Book {% endblock %}</title>
   </head>
-
+   
   <body>
+	
+
     {% block content %}
     {% endblock %}
-
+    <script src = "{% static 'bootstrap/js/jquery.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
   </body>
 </html> 
