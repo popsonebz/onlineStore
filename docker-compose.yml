@@ -11,6 +11,7 @@ services:
          ipv4_address: 172.18.0.2
      mem_limit: 1g  
    web:
+     restart: always
      build: .
      command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8099"
      entrypoint: ./wait-for-postgres.sh db 5432
