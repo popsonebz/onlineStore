@@ -10,21 +10,6 @@ services:
        custom_network:                                                                                                                                                                                                                                                                  
          ipv4_address: 172.18.0.2
      mem_limit: 1g  
-   web:
-     restart: always
-     build: .
-     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8099"
-     entrypoint: ./wait-for-postgres.sh db 5432
-     volumes:
-       - .:/code
-     ports:
-       - "8099:8099"
-     depends_on:
-       - db
-     networks:
-       custom_network:
-         ipv4_address: 172.18.0.4
-     mem_limit: 1g
    jenkins:
      image: jenkins
      volumes:
@@ -32,11 +17,25 @@ services:
      ports:
        - "49001:8080"
      depends_on:
-       - web
+       - db
      networks:                                                                                                                                                                                                                                                                  
        custom_network:                                                                                                                                                                                                                                                                  
          ipv4_address: 172.18.0.6
      mem_limit: 1g
+   web:
+     build: .
+     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8099"
+     volumes:
+       - .:/code
+     ports:
+       - "8099:8099"
+     depends_on:
+       - jenkins
+     networks:
+       custom_network:
+         ipv4_address: 172.18.0.4
+     mem_limit: 1g
+
 networks:
   custom_network:
     external:
